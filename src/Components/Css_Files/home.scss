@@ -1,0 +1,90 @@
+@import '../../Assets/mixins';
+
+.topHeading{
+  text-align: center;
+  .tagColor{
+    color:#6161ff
+  }
+  .getStartedBtnInHeading{
+    color:$white;
+    background-color: #6161ff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    height: 7vh;
+    width: 12vw;
+    justify-content: center;
+    margin: auto;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+}
+.daynmikButtons{
+    display: flex;
+    justify-content: space-between;
+    margin: 3vh 6vw 0 6vw;
+
+    .dropDown{
+      display: flex;
+      align-items: center;
+      gap:1vw;
+      .select{
+       width: 15vw;
+      }
+    }
+    .yearlyStyle{
+        display: flex;
+        p:hover{
+            color: #6161ff;
+            cursor: pointer;            
+        }
+    }
+  }
+  .cards{
+    display: flex;
+    justify-content: space-between;
+    margin: 3vh 6vw 0 6vw;
+    gap: 1vw;
+  }
+  .featureList{
+    margin: 3vh 6vw 0 6vw;
+
+
+  .listHeading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .TableHeading{
+    display: flex;
+    justify-content: space-around;
+  }
+  .TableHeading>div{
+    width: 13vw;
+    text-align: center;
+  }
+  .TableHeading>div:nth-child(1){
+    width: 18vw;
+    text-align: center;
+  }
+  .tryFreebtn{
+    border-radius: 50px;
+    background-color: #6161ff;
+    color: $white;
+    border: 0 solid;
+    width: 9vw;
+    height: 4vh;
+}
+.essentials{
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  margin-top: 2vh;
+}
+.essentialsHead{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+}

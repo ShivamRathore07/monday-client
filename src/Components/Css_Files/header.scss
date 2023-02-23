@@ -1,0 +1,30 @@
+@import '../../Assets/mixins';
+  .container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0vh 2vw 0vh 2vw;
+  }
+  .childContainer{
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    font-size: $heading-size;
+    .logoImage{
+      height: 5.5vh;
+      cursor: pointer;
+    }
+    .getStartedBtn{
+      color: $white;
+      border: 0px solid;
+      border-radius: 50px;
+      background-color:#6161ff;
+      padding: 1.5vh 2vh 1.5vh 2vh;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+  .childContainer>p:nth-child(3){
+    cursor: pointer;
+  }

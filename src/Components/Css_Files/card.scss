@@ -1,0 +1,55 @@
+@import '../../Assets/mixins';
+.card{
+    border: 1px solid;
+    width: 16vw;
+    border-radius: 5px;
+    .color{
+        
+        background-color: rgb(139, 11, 139);
+    }
+    .main{
+        padding: 0 1.4vw 0 1.3vw ;
+    }
+    .amount{
+        display: flex;
+        align-items: center;
+        margin: -40px 0 -35px 0;
+        gap:1vw;
+    }
+    .amount:nth-child(2){
+        font-size: 17px;         
+    }
+    h4{
+        margin-bottom: -10px;
+    }
+    h4+p{
+        font-size: $font-size;
+    }
+    .tryFreebtn{
+        border-radius: 50px;
+        background-color: #6161ff;
+        color: $white;
+        border: 0 solid;
+        width: 9vw;
+        height: 4vh;
+    }
+    hr{
+        border: 1px solid rgb(100, 96, 96);
+        margin-top: 13vh;
+    }
+    .subHeading{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .subData{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // margin-top: 0.8vh;
+    }
+    .subData>p{
+        font-size: 14px;
+        padding-right: 4px;
+    }
+   
+}
