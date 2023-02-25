@@ -4,9 +4,9 @@ import axios from "axios";
 // SIGNUP USERS
 export const updatePrice = createAsyncThunk(
   "price/updatePrice",
-  async ({values,navigate}, { rejectWithValue }) => {
+  async ({obj,navigate}, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`http://localhost:5000/price/63f5c489f130d24050545c4a`,values,{
+      const response = await axios.patch(`http://localhost:5000/price/63f5c489f130d24050545c4a`,obj,{
         withCredentials: true
       });
       if(response.data.result){

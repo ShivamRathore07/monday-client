@@ -35,6 +35,7 @@ const Home = () => {
   return (
     <div>
       <div className="topHeading">
+        <img className='banner' src={process.env.PUBLIC_URL + '/banner.jpeg'} alt="banner image"/>
         <h1>
           Supercharge your teamwork. Start
           <span className="tagColor">free</span>.
@@ -61,11 +62,11 @@ const Home = () => {
         </div>
       </div>
       <div className="cards">
-        <Cards color="#ffffff" fontColor="#323338" heading="Individual" price={0} SubHeading="Individual plan includes:" priceMonth={`Up to 2 seats`}/>
-        <Cards color="#a25ddc" heading="Basic" price={monthlyYearly==="Yearly" ? getPrice.basic : 10} SubHeading="Includes Individual, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.basic*teamSize : 10*teamSize } / month`}/>
-        <Cards color="#0085ff" heading="Standard" price={monthlyYearly==="Yearly" ? getPrice.standard : 12} SubHeading="Includes Basic, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.standard*teamSize : 12*teamSize} / month`}/>
-        <Cards color="#00ca72" heading="Pro" price={monthlyYearly==="Yearly" ? getPrice.pro : 20} SubHeading="Includes Standard, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.pro*teamSize : 20*teamSize} / month`}/>
-        <Cards color="#2b2c5d" heading="Enterprise" price={monthlyYearly==="Yearly" ? getPrice.enterprise : 24} SubHeading="Includes Pro, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.enterprise*teamSize : 24*teamSize} / month`}/>
+        <Cards color="#ffffff" fontColor="#323338" heading="Individual" price={0} SubHeading="Individual plan includes:" priceMonth={`Up to 2 seats`} features={getPrice.individualFeature}/>
+        <Cards color="#a25ddc" heading="Basic" price={monthlyYearly==="Yearly" ? getPrice.basic : 10} SubHeading="Includes Individual, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.basic*teamSize : 10*teamSize } / month`} features={getPrice.basicFeature}/>
+        <Cards color="#0085ff" heading="Standard" price={monthlyYearly==="Yearly" ? getPrice.standard : 12} SubHeading="Includes Basic, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.standard*teamSize : 12*teamSize} / month`} features={getPrice.standardFeature}/>
+        <Cards color="#00ca72" heading="Pro" price={monthlyYearly==="Yearly" ? getPrice.pro : 20} SubHeading="Includes Standard, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.pro*teamSize : 20*teamSize} / month`} features={getPrice.proFeature}/>
+        <Cards color="#2b2c5d" heading="Enterprise" price={monthlyYearly==="Yearly" ? getPrice.enterprise : 24} SubHeading="Includes Pro, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.enterprise*teamSize : 24*teamSize} / month`} features={getPrice.enterpriseFeature}/>
       </div>
 
       <div className="featureList">

@@ -8,7 +8,7 @@ const Footer = () => {
     <>
       <div className="footer">
         <div>
-          <p className="monday">Monday</p>
+          <p className="monday">ambaram</p>
           <h4>indian Address-</h4>
           <p>
             B1/22, ShriAgrasen Apts sec-7, plot no-10, Dwarka, New Delhi -

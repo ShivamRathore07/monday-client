@@ -14,12 +14,11 @@ const Header = () => {
   return (
     <div className="container">
       <div className="childContainer">
-        <img
+        <h2
         onClick={()=>navigate("/")}
           className="logoImage"
-          src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/monday-logo-x2.png"
-          alt=""
-        />
+          
+        >ambaram</h2>
         <p>Products</p>
         <p>Teams</p>
         <p>Platform</p>

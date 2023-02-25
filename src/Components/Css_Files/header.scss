@@ -10,8 +10,11 @@
     gap: 2vw;
     font-size: $heading-size;
     .logoImage{
-      height: 5.5vh;
+      font-size: 28px;
+      color: #6161ff;
       cursor: pointer;
+      letter-spacing: 1px;
+
     }
     .getStartedBtn{
       color: $white;
@@ -25,6 +28,6 @@
       cursor: pointer;
     }
   }
-  .childContainer>p:nth-child(3){
+  .childContainer>p{
     cursor: pointer;
   }
