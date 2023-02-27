@@ -5,7 +5,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 const Cards = ({ color, fontColor, heading, price, priceMonth, SubHeading, features, text }) => {
   return (
     <div className="card">
-      <div style={{backgroundColor:color,height: "1vh",borderTopRightRadius:"5px",borderTopLeftRadius:"5px"}} ></div>
+      <div style={{backgroundColor:color,height: "2vh",borderTopRightRadius:"10px",borderTopLeftRadius:"10px"}} ></div>
       <div className="main">
         <h2>{heading}</h2>
         {text ?<> <p  style={{color:fontColor ? fontColor : color, fontSize: "25px"}}>{text}</p> <img className='enterprise' src={process.env.PUBLIC_URL + '/enterprise.png'} alt="banner image"/> </>: <div className="amount">
