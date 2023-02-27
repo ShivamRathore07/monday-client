@@ -5,7 +5,6 @@ import { signIn, signOut, signUp } from "../Actions/userAction";
 const UserReducer = createSlice({
   name: "user",
   initialState: {
-    userData: [],
     loader: false,
     error: "",
     success: "",
@@ -31,7 +30,6 @@ const UserReducer = createSlice({
     },
     [signIn.fulfilled]: (state, action) => {
       state.loader = false;
-      state.userData = action.payload.result
       toast.success(action.payload.message);
     },
     [signIn.rejected]: (state, action) => {

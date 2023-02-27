@@ -53,9 +53,9 @@ const Edit = () => {
     pro: Yup.number()
       .required("Pro price is Required")
       .positive("Must be Positive"),
-    enterprise: Yup.number()
-      .required("Enterprise price is Required")
-      .positive("Must be Positive"),
+    individual: Yup.number()
+      .required("Individual price is Required"),
+    enterprise: Yup.string().required("Enterprise is Required"),  
   });
 
   //formhandler
@@ -65,6 +65,7 @@ const Edit = () => {
       standard: values.standard,
       pro: values.pro,
       enterprise: values.enterprise,
+      individual: values.individual,
       individualFeature: individualFeatureList,
       basicFeature: basicFeatureList,
       standardFeature: standardFeatureList,
@@ -92,6 +93,7 @@ const Edit = () => {
       <div className="editPage">
         <Formik
           initialValues={{
+            individual: getPrice.individual,
             basic: getPrice.basic,
             standard: getPrice.standard,
             pro: getPrice.pro,
@@ -115,6 +117,14 @@ const Edit = () => {
               <div className="formContainer">
                 <div className="form">
                   <p className="batch">Individual</p>
+                  <Input
+                    label="Individual Price"
+                    name="individual"
+                    value={values.individual}
+                    type="number"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
 
                   <div className="features">
                     <Input
@@ -345,7 +355,7 @@ const Edit = () => {
                   <Input
                     label="Enterprise Price"
                     name="enterprise"
-                    type="number"
+                    type="text"
                     value={values.enterprise}
                     onChange={handleChange}
                     onBlur={handleBlur}

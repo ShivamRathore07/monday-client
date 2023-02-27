@@ -7,10 +7,12 @@ import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Home from "../Components/HomePage/Home";
 import PrivateRoutes from "../protected/PrivateRoutes";
-import { useSelector } from "react-redux";
+import jwt from "jwt-decode";
+import { Cookies } from "react-cookie";
 
 const MainRoutes = () => {
-  const { userData } = useSelector((s) => s.userReducer);
+ const cookies = new Cookies();
+ const token =  cookies.get('_user_')
 
   return (
     <>
@@ -19,8 +21,8 @@ const MainRoutes = () => {
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route exact path="/" element={<Home />} />
-            {userData.role==="ADMIN" &&
-            <Route exact path="/editPrice" element={<Edit />} />
+            {token? jwt(token).user.role==="ADMIN" ?
+            <Route exact path="/editPrice" element={<Edit />} /> : "" :""
             }
           </Route>
           <Route exact path="/login" element={<Login />} />

@@ -2,14 +2,15 @@ import React from "react";
 import "../Css_Files/header.scss";
 import { useNavigate } from "react-router-dom";
 import { Cookies } from "react-cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signOut } from "../../Redux/Actions/userAction";
+import jwt from "jwt-decode";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cookies = new Cookies();
-  const { userData } = useSelector((s) => s.userReducer);
+  const cookies = new Cookies(); 
+  const token =  cookies.get('_user_')
 
   return (
     <div className="container">
@@ -25,12 +26,12 @@ const Header = () => {
         <p>Resources</p>
       </div>
       <div className="childContainer">
-      {userData.role==="ADMIN" &&
-        <p onClick={()=>navigate("/editPrice")}>Edit Pricing</p>
+      {token? jwt(token).user.role==="ADMIN" ?
+        <p onClick={()=>navigate("/editPrice")}>Edit Pricing</p> : "" : ""
       }
         <p>Contact sales</p>
         {cookies.get('_user_')?<p onClick={()=>dispatch(signOut(navigate))} >Logout</p>:<p onClick={()=>navigate("/login")} >Login</p>}
-        <p className="getStartedBtn">{`Get Started ->`}</p>
+        <p className="getStartedBtn">{`Get Started`}</p>
       </div>
     </div>
   );

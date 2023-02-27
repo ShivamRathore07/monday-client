@@ -42,7 +42,7 @@ const Home = () => {
         </h1>
         <p>Unlimited boards and workflows. No credit card needed.</p>
         <div className="getStartedBtnInHeading">
-          <p>{`Get Started ->`}</p>
+          <p>{`Get Started`}</p>
         </div>
       </div>
       <div className="daynmikButtons">
@@ -62,18 +62,18 @@ const Home = () => {
         </div>
       </div>
       <div className="cards">
-        <Cards color="#ffffff" fontColor="#323338" heading="Individual" price={0} SubHeading="Individual plan includes:" priceMonth={`Up to 2 seats`} features={getPrice.individualFeature}/>
+        <Cards color="#ffffff" fontColor="#323338" heading="Individual" price={getPrice.individual} SubHeading="Individual plan includes:" priceMonth="Up to 2 seats" features={getPrice.individualFeature}/>
         <Cards color="#a25ddc" heading="Basic" price={monthlyYearly==="Yearly" ? getPrice.basic : 10} SubHeading="Includes Individual, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.basic*teamSize : 10*teamSize } / month`} features={getPrice.basicFeature}/>
         <Cards color="#0085ff" heading="Standard" price={monthlyYearly==="Yearly" ? getPrice.standard : 12} SubHeading="Includes Basic, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.standard*teamSize : 12*teamSize} / month`} features={getPrice.standardFeature}/>
         <Cards color="#00ca72" heading="Pro" price={monthlyYearly==="Yearly" ? getPrice.pro : 20} SubHeading="Includes Standard, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.pro*teamSize : 20*teamSize} / month`} features={getPrice.proFeature}/>
-        <Cards color="#2b2c5d" heading="Enterprise" price={monthlyYearly==="Yearly" ? getPrice.enterprise : 24} SubHeading="Includes Pro, plus:" priceMonth={`Total $${monthlyYearly==="Yearly" ? getPrice.enterprise*teamSize : 24*teamSize} / month`} features={getPrice.enterpriseFeature}/>
+        <Cards color="#2b2c5d" heading="Enterprise" SubHeading="Includes Pro, plus:" features={getPrice.enterpriseFeature} text={getPrice.enterprise} />
       </div>
 
       <div className="featureList">
         <div className="listHeading">
           <p>Complete features list</p>
           <div>
-            <MdExpandLess size={50} color="#080808" />{" "}
+            <MdExpandLess size={50} color="#080808" />
             <MdExpandMore size={50} color="#080808" />
           </div>
         </div>
