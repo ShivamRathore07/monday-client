@@ -47,9 +47,69 @@
             .tags>p{
                 margin-top: -0vh;
             }
+        }
+        
     }
+    .featuresInputBoxList{
+        display: flex;
+        gap: 0.5vw;
+        padding: 1vh;
+        margin-top: 1vh;
+    }
+    .CompletefeaturesList{
+        margin-top: 3vh;
+        padding: 1vh;
+        border-top-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background-color: #f2f4f6;
+        .essentials{
+            border-bottom: 1px solid rgb(218, 213, 213);
+            padding-left: 2vh;
+            
+          }
+          .essentialsHead{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 2vh;
+          }
+          .TableHeading{
+            display: flex;
+            justify-content: space-around;
+          }
+          .TableHeading>div{
+            width: 15vw;
+            text-align: center;
+            align-self: center;
+          }
+          .TableHeading>div:nth-child(1){
+            width: 17vw;
+            text-align: center;
+          }
+          .TableHeading>div:nth-child(7){
+            width: 5vw;
+            text-align: center;
+          }
+      
+      }
+      .addFeaturesContainer{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1vh;
 
-}
+      
+      .addfeatures{
+        background-color: #6161ff; 
+           border: 0px solid; 
+           color: $white;
+           font-size: 18px;
+           height: 6vh;
+           border-radius: 5px;
+      }
+
+    }
 .submit{
     background-color: #6161ff; 
            border: 0px solid; 

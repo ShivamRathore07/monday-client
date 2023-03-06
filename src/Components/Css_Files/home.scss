@@ -7,8 +7,8 @@
     color:#68df23
   }
   .banner{
-    height: 30vh;
-    width: 90vw;
+    height: 75vh;
+    width:100%;
   }
   .banner+h1{
    color: #6161ff;
@@ -58,9 +58,15 @@
     margin: 3vh 3vw 0 3vw;
     gap: 0.8vw;
   }
+  .bgImage{
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-top: 2vh;  
+  }
   .featureList{
+    position: relative;
     margin: 3vh 3vw 0 3vw;
-
 
   .listHeading{
     display: flex;
@@ -68,7 +74,20 @@
     align-items: center;
   }
   .listHeading>h1{
-    color: #6161ff;
+    color: $white;
+  }
+  .TableHeadingList{
+    display: flex;
+    justify-content: space-around;
+    background: #ffffff;
+    height: 15vh;
+    border-radius: 80px;
+    text-align: center;
+  }
+  .TableHeadingList>div:nth-child(1){
+    width: 18vw;
+    text-align: center;
+    padding-top: 3.5vh;
   }
   .TableHeading{
     display: flex;

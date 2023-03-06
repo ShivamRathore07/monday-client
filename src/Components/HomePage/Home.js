@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../Css_Files/home.scss";
 import Select from "react-select";
 import Cards from "../ReUseableCards/Cards";
-import { MdExpandLess, MdExpandMore } from "react-icons/md";
+import { MdExpandMore } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,11 +38,11 @@ const Home = () => {
         <img
           className="banner"
           src={process.env.PUBLIC_URL + "/banner.jpeg"}
-          alt="banner image"
+          alt="banner_image"
         />
         <h1>
-          A visual tool for collaboration and tracking work in one place <br/> Start
-          for <span className="tagColor">free</span>.
+          A visual tool for collaboration and tracking work in one place <br />{" "}
+          Start for <span className="tagColor">free</span>.
         </h1>
         <p>Unlimited boards and workflows. No credit card needed.</p>
         <div className="getStartedBtnInHeading">
@@ -121,16 +121,22 @@ const Home = () => {
         />
       </div>
 
+      <img
+          className="bgImage"
+          src={process.env.PUBLIC_URL + "/background.jpeg"}
+          alt="bgImage"
+        />
       <div className="featureList">
         <div className="listHeading">
           <h1>Complete features list</h1>
           <div>
-            {/* <MdExpandLess size={50} color="#080808" /> */}
-            <MdExpandMore size={50} color="#6161ff" />
+            <MdExpandMore size={50} color="#ffffff" />
           </div>
         </div>
-        <div className="TableHeading">
-          <div>  <h4>Features</h4></div>
+        <div className="TableHeadingList">
+          <div>
+            <h4>Features</h4>
+          </div>
           <div>
             <h4 style={{ color: "#68df23" }}>Individual</h4>
             <button className="tryFreebtn">Try for free</button>
@@ -157,1155 +163,435 @@ const Home = () => {
             <h2>Plan</h2>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.plan?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.planName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.planIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.planIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.planBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.planBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.planStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.planStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.planPro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.planPro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.planEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.planEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+
         <div className="CompletefeaturesList">
           <div className="essentials">
             <h2>Teams</h2>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.team?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.teamName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.teamIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.teamIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.teamBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.teamBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.teamStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.teamStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.teamPro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.teamPro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.teamEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.teamEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-         <div className="CompletefeaturesList">
+
+        <div className="CompletefeaturesList">
           <div className="essentials">
             <h2>Wall</h2>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.wall?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.wallName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.wallIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.wallIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.wallBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.wallBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.wallStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.wallStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.wallPro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.wallPro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.wallEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.wallEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-         <div className="CompletefeaturesList">
+        <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>file</h2>
+            <h2>File</h2>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.file?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.fileName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.fileIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.fileIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.fileBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.fileBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.fileStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.fileStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.filePro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.filePro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.fileEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.fileEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-         <div className="CompletefeaturesList">
+        <div className="CompletefeaturesList">
           <div className="essentials">
             <h2>Create Product</h2>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.product?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.productName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.productIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.productIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.productBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.productBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.productStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.productStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.productPro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.productPro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.productEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.productEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-         <div className="CompletefeaturesList">
+        <div className="CompletefeaturesList">
           <div className="essentials">
             <h2>Manage</h2>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.manage?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.manageName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.manageIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.manageIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.manageBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.manageBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.manageStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.manageStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.managePro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.managePro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.manageEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.manageEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="CompletefeaturesList">
           <div className="essentials">
             <h2>Dashboard</h2>
-            <h4>Support</h4>
           </div>
           <div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
+            {getPrice.dashboard?.map((e, i) => (
+              <div key={i} className="TableHeading">
+                <div className="essentialsHead">
+                  <p>{e.dashboardName}</p>
+                  <div>
+                    <AiOutlineInfoCircle size={24} color="gray" />
+                  </div>
+                </div>
                 <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
+                  <p>
+                    {e.dashboardIndividual === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.dashboardIndividual
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.dashboardBasic === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.dashboardBasic
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.dashboardStandard === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.dashboardStandard
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.dashboardPro === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.dashboardPro
+                    )}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    {e.dashboardEnterprise === "icon" ? (
+                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                    ) : (
+                      e.dashboardEnterprise
+                    )}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-              <div>
-                <p>Individual</p>
-              </div>
-            </div>
-            <div className="TableHeading">
-              <div className="essentialsHead">
-                <p>Maximum number of seats</p>
-                <div>
-                  <AiOutlineInfoCircle size={24} color="gray" />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-              <div>
-                <p>
-                  <IoMdCheckmarkCircle size={20} color="green" />
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
