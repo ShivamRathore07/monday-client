@@ -9,6 +9,7 @@ import Home from "../Components/HomePage/Home";
 import PrivateRoutes from "../protected/PrivateRoutes";
 import jwt from "jwt-decode";
 import { Cookies } from "react-cookie";
+import PaymentSuccess from "../Components/payment/paymentSuccess";
 
 const MainRoutes = () => {
  const cookies = new Cookies();
@@ -25,6 +26,7 @@ const MainRoutes = () => {
             <Route exact path="/editPrice" element={<Edit />} /> : "" :""
             }
           </Route>
+          <Route exact path="/payment-success" element={<PaymentSuccess/> }/>
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
         </Routes>

@@ -1,8 +1,15 @@
 import React from "react";
 import "../Css_Files/card.scss";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { stripePaymentCheckout } from "../../Redux/Actions/stripeAction"
+import { Cookies } from "react-cookie"; 
+import jwt from "jwt-decode";
 
 const Cards = ({ color, fontColor, heading, price, priceMonth, SubHeading, features, text }) => {
+  const cookies = new Cookies();
+  const token =  cookies.get('_user_')
+  const dispatch = useDispatch();
   return (
     <div className="card">
       <div style={{backgroundColor:color,height: "2vh",borderTopRightRadius:"10px",borderTopLeftRadius:"10px"}} ></div>
@@ -18,7 +25,7 @@ const Cards = ({ color, fontColor, heading, price, priceMonth, SubHeading, featu
           }
         <h4>{priceMonth}</h4>
        <p>Billed annually</p>
-        <button className="tryFreebtn">Try for free</button>
+        <button onClick={()=>price>0? dispatch(stripePaymentCheckout({ user: jwt(token).user, heading,price,priceMonth})):""} className="tryFreebtn">Try for free</button>
         <p>Manage all your teams work in one place</p>
         <hr />
         <p className="subHeading">{SubHeading}</p>
