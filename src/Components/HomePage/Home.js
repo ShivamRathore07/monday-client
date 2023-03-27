@@ -15,7 +15,7 @@ const Home = () => {
   const { getPrice } = useSelector((s) => s.priceReducer);
 
   useEffect(() => {
-    dispatch(getOneData("63f5c489f130d24050545c4a"));
+    dispatch(getOneData("64212a2eb090a91a90ce806e"));
   }, []);
 
   const options = [

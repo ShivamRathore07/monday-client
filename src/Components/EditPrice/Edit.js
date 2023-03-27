@@ -49,15 +49,14 @@ const Edit = () => {
 
   const [manage, setManage] = useState({});
   const [manageArray, setManageArray] = useState([]);
-  
+
   const [dashboard, setDashboard] = useState({});
   const [dashboardArray, setDashboardArray] = useState([]);
 
-  
   console.log("planArray", getPrice);
 
   useEffect(() => {
-    dispatch(getOneData("63f5c489f130d24050545c4a"));
+    dispatch(getOneData("64212a2eb090a91a90ce806e"));
   }, []);
 
   useEffect(() => {
@@ -66,13 +65,13 @@ const Edit = () => {
     setStandardFeatureList(getPrice.standardFeature);
     setProFeatureList(getPrice.proFeature);
     setEnterpriseFeatureList(getPrice.enterpriseFeature);
-    setPlanArray(getPrice.plan)
-    setTeamArray(getPrice.team)
-    setWallArray(getPrice.wall)
-    setFileArray(getPrice.file)
-    setProductArray(getPrice.product)
-    setManageArray(getPrice.manage)
-    setDashboardArray(getPrice.dashboard)
+    setPlanArray(getPrice.plan);
+    setTeamArray(getPrice.team);
+    setWallArray(getPrice.wall);
+    setFileArray(getPrice.file);
+    setProductArray(getPrice.product);
+    setManageArray(getPrice.manage);
+    setDashboardArray(getPrice.dashboard);
   }, [getPrice]);
 
   //validation
@@ -516,11 +515,13 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{plan.planName && setPlanArray([...planArray, plan])}}
+                    onClick={() => {
+                      plan.planName && setPlanArray([...planArray, plan]);
+                    }}
                   >
                     Add New Plans
                   </button>
-               </div>
+                </div>
 
                 {planArray?.map((e, i) => (
                   <div className="TableHeading">
@@ -653,11 +654,13 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{team.teamName && setTeamArray([...teamArray, team])}}
+                    onClick={() => {
+                      team.teamName && setTeamArray([...teamArray, team]);
+                    }}
                   >
                     Add New Teams
                   </button>
-               </div>
+                </div>
 
                 {teamArray?.map((e, i) => (
                   <div className="TableHeading">
@@ -726,7 +729,7 @@ const Edit = () => {
                 ))}
               </div>
 
-               <div className="CompletefeaturesList">
+              <div className="CompletefeaturesList">
                 <div className="essentials">
                   <h2>wall</h2>
                 </div>
@@ -790,11 +793,13 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{wall.wallName && setWallArray([...wallArray, wall])}}
+                    onClick={() => {
+                      wall.wallName && setWallArray([...wallArray, wall]);
+                    }}
                   >
                     Add New Walls
                   </button>
-               </div>
+                </div>
 
                 {wallArray?.map((e, i) => (
                   <div className="TableHeading">
@@ -863,8 +868,7 @@ const Edit = () => {
                 ))}
               </div>
 
-
-               <div className="CompletefeaturesList">
+              <div className="CompletefeaturesList">
                 <div className="essentials">
                   <h2>File</h2>
                 </div>
@@ -928,11 +932,13 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{file.fileName && setFileArray([...fileArray, file])}}
+                    onClick={() => {
+                      file.fileName && setFileArray([...fileArray, file]);
+                    }}
                   >
                     Add New Files
                   </button>
-               </div>
+                </div>
 
                 {fileArray?.map((e, i) => (
                   <div className="TableHeading">
@@ -1001,8 +1007,7 @@ const Edit = () => {
                 ))}
               </div>
 
-
-               <div className="CompletefeaturesList">
+              <div className="CompletefeaturesList">
                 <div className="essentials">
                   <h2>Create Product</h2>
                 </div>
@@ -1012,7 +1017,10 @@ const Edit = () => {
                     name="productName"
                     type="text"
                     onChange={(e) =>
-                      setProduct({ ...product, [e.target.name]: e.target.value })
+                      setProduct({
+                        ...product,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1021,7 +1029,10 @@ const Edit = () => {
                     name="productIndividual"
                     type="text"
                     onChange={(e) =>
-                      setProduct({ ...product, [e.target.name]: e.target.value })
+                      setProduct({
+                        ...product,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1030,7 +1041,10 @@ const Edit = () => {
                     name="productBasic"
                     type="text"
                     onChange={(e) =>
-                      setProduct({ ...product, [e.target.name]: e.target.value })
+                      setProduct({
+                        ...product,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1039,7 +1053,10 @@ const Edit = () => {
                     name="productStandard"
                     type="text"
                     onChange={(e) =>
-                      setProduct({ ...product, [e.target.name]: e.target.value })
+                      setProduct({
+                        ...product,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1048,7 +1065,10 @@ const Edit = () => {
                     name="productPro"
                     type="text"
                     onChange={(e) =>
-                      setProduct({ ...product, [e.target.name]: e.target.value })
+                      setProduct({
+                        ...product,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1057,7 +1077,10 @@ const Edit = () => {
                     name="productEnterprise"
                     type="text"
                     onChange={(e) =>
-                      setProduct({ ...product, [e.target.name]: e.target.value })
+                      setProduct({
+                        ...product,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1066,11 +1089,14 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{product.productName && setProductArray([...productArray, product])}}
+                    onClick={() => {
+                      product.productName &&
+                        setProductArray([...productArray, product]);
+                    }}
                   >
                     Add New Products
                   </button>
-               </div>
+                </div>
 
                 {productArray?.map((e, i) => (
                   <div className="TableHeading">
@@ -1139,8 +1165,7 @@ const Edit = () => {
                 ))}
               </div>
 
-
-               <div className="CompletefeaturesList">
+              <div className="CompletefeaturesList">
                 <div className="essentials">
                   <h2>Manage</h2>
                 </div>
@@ -1204,11 +1229,14 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{manage.manageName && setManageArray([...manageArray, manage])}}
+                    onClick={() => {
+                      manage.manageName &&
+                        setManageArray([...manageArray, manage]);
+                    }}
                   >
                     Add New Manages
                   </button>
-               </div>
+                </div>
 
                 {manageArray?.map((e, i) => (
                   <div className="TableHeading">
@@ -1277,9 +1305,7 @@ const Edit = () => {
                 ))}
               </div>
 
-
-
-               <div className="CompletefeaturesList">
+              <div className="CompletefeaturesList">
                 <div className="essentials">
                   <h2>Dashboard</h2>
                 </div>
@@ -1289,7 +1315,10 @@ const Edit = () => {
                     name="dashboardName"
                     type="text"
                     onChange={(e) =>
-                      setDashboard({ ...dashboard, [e.target.name]: e.target.value })
+                      setDashboard({
+                        ...dashboard,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1298,7 +1327,10 @@ const Edit = () => {
                     name="dashboardIndividual"
                     type="text"
                     onChange={(e) =>
-                      setDashboard({ ...dashboard, [e.target.name]: e.target.value })
+                      setDashboard({
+                        ...dashboard,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1307,7 +1339,10 @@ const Edit = () => {
                     name="dashboardBasic"
                     type="text"
                     onChange={(e) =>
-                      setDashboard({ ...dashboard, [e.target.name]: e.target.value })
+                      setDashboard({
+                        ...dashboard,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1316,7 +1351,10 @@ const Edit = () => {
                     name="dashboardStandard"
                     type="text"
                     onChange={(e) =>
-                      setDashboard({ ...dashboard, [e.target.name]: e.target.value })
+                      setDashboard({
+                        ...dashboard,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1325,7 +1363,10 @@ const Edit = () => {
                     name="dashboardPro"
                     type="text"
                     onChange={(e) =>
-                      setDashboard({ ...dashboard, [e.target.name]: e.target.value })
+                      setDashboard({
+                        ...dashboard,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1334,7 +1375,10 @@ const Edit = () => {
                     name="dashboardEnterprise"
                     type="text"
                     onChange={(e) =>
-                      setDashboard({ ...dashboard, [e.target.name]: e.target.value })
+                      setDashboard({
+                        ...dashboard,
+                        [e.target.name]: e.target.value,
+                      })
                     }
                     onBlur={handleBlur}
                   />
@@ -1343,11 +1387,14 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() =>{dashboard.dashboardName && setDashboardArray([...dashboardArray, dashboard])}}
+                    onClick={() => {
+                      dashboard.dashboardName &&
+                        setDashboardArray([...dashboardArray, dashboard]);
+                    }}
                   >
                     Add New Dashboards
                   </button>
-               </div>
+                </div>
 
                 {dashboardArray?.map((e, i) => (
                   <div className="TableHeading">
