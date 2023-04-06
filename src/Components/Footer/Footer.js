@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="copyRight">
-        <p>Copyrigth @ 2023 monday | Powered by monday</p>
+        <p>Copyright © 2023 Ambaram | Powered by Ambaram</p>
       </div>
     </>
   );

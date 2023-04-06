@@ -6,15 +6,27 @@ import Input from "../../controls/input";
 import { FiEye } from "react-icons/fi";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../Redux/Actions/userAction";
 import Select from "react-select";
+import Profession from "../SetOfQuestions/StepFirstQuestion";
+import StepTwoQuestion from "../SetOfQuestions/StepTwoQuestion";
+import StepThirdQuestion from "../SetOfQuestions/StepThirdQuestion";
+import StepForthQuestion from "../SetOfQuestions/StepForthQuestion";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [active, setActive] = useState({
+    signup: true,
+    questionOne: false,
+    questionTwo: false,
+    questionThird: false,
+    questionForth: false,
+  });
 
+  const [formData, setformData] = useState({});
+
+  const navigate = useNavigate();
+  
+  console.log(formData)
   const signInValidationSchema = Yup.object().shape({
     userName: Yup.string().required("UserName is required"),
     email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -31,105 +43,150 @@ const Signup = () => {
         }
       ),
   });
-  const signInHandler = async (values) => {
-    dispatch(signUp({values,navigate}))
+
+  const handleFormChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
   };
+  const signInHandler=(values)=>{
+    console.log(values)
+    setActive({
+      ...active,
+      signup: false,
+      questionOne: true,
+    });
+  }
+
+  // dispatch(signUp({values,navigate}))
   const options = [
     { value: "USER", label: "User" },
     { value: "ADMIN", label: "Admin" },
   ];
+
   const customStyles = {
-    control: base => ({
+    control: (base) => ({
       ...base,
-      height:"6vh",
+      height: "6vh",
       marginBottom: "2.5vh",
-    })
+    }),
   };
+
   return (
     <>
-      <div className="signupPage">
-        <div className="form">
-          <p className="batch">Create a new account</p>
-          <Formik
-            initialValues={{
-              userName: "",
-              email: "",
-              password: "",
-              role:""
-            }}
-            onSubmit={signInHandler}
-            validationSchema={signInValidationSchema}
-            enableReinitialize
-          >
-            {({
-              handleChange,
-              handleSubmit,
-              values,
-              errors,
-              touched,
-              isValid,
-              handleBlur,
-              setFieldValue,
-            }) => (
-              <Form onSubmit={handleSubmit} autoComplete="off">
-                <Input
-                  label="User Name"
-                  name="userName"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <Input
-                  label="Email"
-                  name="email"
-                  type="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <div>
-                  <label>Role</label>
-                  <Select
-                    options={options}
-                    name="role"
-                    styles={customStyles}
-                    placeholder="Role"
-                    onChange={(val) => setFieldValue("role",val.value)}
-                  />
-                </div>
-                <div className="password">
+      {active.signup ? (
+        <div className="signupPage">
+          <div className="form">
+            <p className="batch">Create a new account</p>
+            <Formik
+              initialValues={{
+                userName: formData.userName,
+                email: formData.email,
+                password: formData.password,
+                role: formData.role,
+              }}
+              validationSchema={signInValidationSchema}
+              enableReinitialize
+              onSubmit={signInHandler}
+            >
+              {({
+                handleChange,
+                handleSubmit,
+                values,
+                errors,
+                touched,
+                isValid,
+                handleBlur,
+                setFieldValue,
+              }) => (
+                <Form onSubmit={handleSubmit} autoComplete="off">
                   <Input
-                    label="Password"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    onChange={handleChange}
+                    label="User Name"
+                    name="userName"
+                    type="text"
+                    value={values.userName}
+                    onChange={(e) => handleFormChange(e)}
                     onBlur={handleBlur}
                   />
-
+                  <Input
+                    label="Email"
+                    name="email"
+                    type="email"
+                    value={values.email}
+                    onChange={(e) => handleFormChange(e)}
+                    onBlur={handleBlur}
+                  />
                   <div>
-                    {showPassword ? (
-                      <FiEye onClick={() => setShowPassword(false)} />
-                    ) : (
-                      <AiOutlineEyeInvisible
-                        onClick={() => setShowPassword(true)}
-                      />
-                    )}
+                    <label>Role</label>
+                    <Select
+                      options={options}
+                      name="role"
+                      styles={customStyles}
+                      placeholder="Role"
+                      value={options.find(
+                        (option) => option.value === values.role
+                      )}
+                      onChange={(val) =>
+                        setformData({ ...formData, role: val.value })
+                      }
+                    />
                   </div>
-                </div>
-                <button type="submit" onClick={handleSubmit}>Signup</button>
-                <p className="already">
-                  Already have an account?{" "}
-                  <span
-                    style={{ cursor: "pointer", color: "#6161ff" }}
-                    onClick={() => navigate("/login")}
-                  >
-                    Log in
-                  </span>
-                </p>
-              </Form>
-            )}
-          </Formik>
+                  <div className="password">
+                    <Input
+                      label="Password"
+                      name="password"
+                      value={values.password}
+                      type={showPassword ? "text" : "password"}
+                      onChange={(e) => handleFormChange(e)}
+                      onBlur={handleBlur}
+                    />
+
+                    <div>
+                      {showPassword ? (
+                        <FiEye onClick={() => setShowPassword(false)} />
+                      ) : (
+                        <AiOutlineEyeInvisible
+                          onClick={() => setShowPassword(true)}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    onClick={handleSubmit}                  >
+                    Continue
+                  </button>
+                  <p className="already">
+                    Already have an account?{" "}
+                    <span
+                      style={{ cursor: "pointer", color: "#6161ff" }}
+                      onClick={() => navigate("/login")}
+                    >
+                      Log in
+                    </span>
+                  </p>
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
-      </div>
+      ) : active.questionOne ? (
+        <Profession
+          {...{ handleFormChange, formData, setActive, active }}
+        />
+      ) : active.questionTwo ? (
+        <StepTwoQuestion
+          {...{ handleFormChange, formData, setActive, active }}
+        />
+      ) : active.questionThird ? (
+        <StepThirdQuestion
+          {...{handleFormChange, formData, setActive, active }}
+        />
+      ) : active.questionForth ? (
+        <StepForthQuestion
+          {...{handleFormChange, formData, setActive, active }}
+        />
+      ):(
+        ""
+      )}
     </>
   );
 };

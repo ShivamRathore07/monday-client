@@ -11,6 +11,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { BsDot } from "react-icons/bs";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const Edit = () => {
   const navigate = useNavigate();
@@ -130,6 +132,7 @@ const Edit = () => {
 
   return (
     <>
+      <Header />
       <div className="editPage">
         <Formik
           initialValues={{
@@ -1472,6 +1475,7 @@ const Edit = () => {
           )}
         </Formik>
       </div>
+      <Footer />
     </>
   );
 };

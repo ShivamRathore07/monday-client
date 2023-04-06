@@ -7,6 +7,8 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneData } from "../../Redux/Actions/priceAction";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   const [teamSize, setTeamSize] = useState(3);
@@ -34,6 +36,7 @@ const Home = () => {
 
   return (
     <div>
+      <Header />
       <div className="topHeading">
         <img
           className="banner"
@@ -122,10 +125,10 @@ const Home = () => {
       </div>
 
       <img
-          className="bgImage"
-          src={process.env.PUBLIC_URL + "/background.jpeg"}
-          alt="bgImage"
-        />
+        className="bgImage"
+        src={process.env.PUBLIC_URL + "/background.jpeg"}
+        alt="bgImage"
+      />
       <div className="featureList">
         <div className="listHeading">
           <h1>Complete features list</h1>
@@ -595,6 +598,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

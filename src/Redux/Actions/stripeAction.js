@@ -6,7 +6,7 @@ export const stripePaymentCheckout = createAsyncThunk(
     "stripe/stripePaymentCheckout",
     async (data, { rejectWithValue }) => {
       try {
-        const response = await axios.post(`http://localhost:5000/payment/create-checkout-session`,data,{
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/payment/create-checkout-session`,data,{
           withCredentials: true
         });
         if(response.data.url){
