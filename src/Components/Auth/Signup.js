@@ -11,6 +11,7 @@ import Profession from "../SetOfQuestions/StepFirstQuestion";
 import StepTwoQuestion from "../SetOfQuestions/StepTwoQuestion";
 import StepThirdQuestion from "../SetOfQuestions/StepThirdQuestion";
 import StepForthQuestion from "../SetOfQuestions/StepForthQuestion";
+import StepFiveQuestion from "../SetOfQuestions/StepFiveQuestion";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,6 +21,7 @@ const Signup = () => {
     questionTwo: false,
     questionThird: false,
     questionForth: false,
+    questionFive: false,
   });
 
   const [formData, setformData] = useState({});
@@ -184,6 +186,10 @@ const Signup = () => {
         <StepForthQuestion
           {...{handleFormChange, formData, setActive, active }}
         />
+      ) : active.questionFive ? (
+        <StepFiveQuestion
+            {...{handleFormChange, formData, setActive, active }}
+          />
       ):(
         ""
       )}

@@ -10,6 +10,7 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle } from "react-icons/io";
+import { FiEdit } from "react-icons/fi";
 import { BsDot } from "react-icons/bs";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -55,7 +56,8 @@ const Edit = () => {
   const [dashboard, setDashboard] = useState({});
   const [dashboardArray, setDashboardArray] = useState([]);
 
-  console.log("planArray", getPrice);
+  const [editToggle, setEditToggle] = useState(false);
+  const [editId, setEditId] = useState();
 
   useEffect(() => {
     dispatch(getOneData("64212a2eb090a91a90ce806e"));
@@ -88,7 +90,6 @@ const Edit = () => {
       .required("Pro price is Required")
       .positive("Must be Positive"),
     individual: Yup.number().required("Individual price is Required"),
-    enterprise: Yup.string().required("Enterprise is Required"),
   });
 
   //formhandler
@@ -112,23 +113,70 @@ const Edit = () => {
       product: productArray,
       dashboard: dashboardArray,
     };
-    console.log("plan", obj);
 
     dispatch(updatePrice({ obj, navigate }));
   };
 
-  const handleAdd = (setList, featureList, setInput, featureInput) => {
-    if (featureInput === "") {
-      return;
+  const handleAdd = (setList, featureList, setInput, featureInput, id) => {
+    if (editToggle) {
+      if (featureInput === "") {
+        return;
+      }
+      const updatedTodos = [...featureList].map((e, i) => {
+        if (id === i) {
+          e = featureInput;
+        }
+        return e;
+      });
+      setList(updatedTodos);
+      setEditToggle(false);
+      setInput("");
+    } else {
+      if (featureInput === "") {
+        return;
+      }
+      setList([...featureList, featureInput]);
+      setInput("");
     }
-    setList([...featureList, featureInput]);
-    setInput("");
   };
 
   const handleDelete = (id, featureList, setList) => {
     let Filter = featureList.filter((e, i) => i !== id);
     setList(Filter);
   };
+
+  const handleEdit = (i, e, setInput) => {
+    setEditToggle(true);
+    setInput(e);
+    setEditId(i);
+  };
+
+  const handleAddFeature = (input, name, setInput, array, setArray, id) => {
+    if (editToggle) {
+      let obj = { ...input };
+      const updatedTodos = [...array].map((e, i) => {
+        if (id === i) {
+          e = obj;
+        }
+        return e;
+      });
+      name && setArray(updatedTodos);
+      setEditToggle(false);
+      
+      for (let key in input) {
+        input[key] = "";
+      }
+      setInput({ ...input });
+    } else {
+      let obj = { ...input };
+      name && setArray([...array, obj]);
+      for (let key in input) {
+        input[key] = "";
+      }
+      setInput({ ...input });
+    }
+  };
+
 
   return (
     <>
@@ -137,10 +185,15 @@ const Edit = () => {
         <Formik
           initialValues={{
             individual: getPrice.individual,
+            Individual: individualFeatureInput,
             basic: getPrice.basic,
+            basicFeature: basicFeatureInput,
             standard: getPrice.standard,
+            standardFeature: standardFeatureInput,
             pro: getPrice.pro,
+            proFeature: proFeatureInput,
             enterprise: getPrice.enterprise,
+            enterpriseFeature: enterpriseFeatureInput,
           }}
           onSubmit={signInHandler}
           validationSchema={signInValidationSchema}
@@ -159,7 +212,7 @@ const Edit = () => {
             <Form onSubmit={handleSubmit} autoComplete="off">
               <div className="formContainer">
                 <div className="form">
-                  <p className="batch">Individual</p>
+                  <p className="batch individualColor">Individual</p>
                   <Input
                     label="Individual Price"
                     name="individual"
@@ -174,6 +227,7 @@ const Edit = () => {
                       label="Individual plan includes:"
                       name="Individual"
                       type="text"
+                      value={values.Individual}
                       onChange={(e) =>
                         setIndividualFeatureInput(e.target.value)
                       }
@@ -187,10 +241,12 @@ const Edit = () => {
                             setIndividualFeatureList,
                             individualFeatureList,
                             setIndividualFeatureInput,
-                            individualFeatureInput
+                            individualFeatureInput,
+                            editId
                           )
                         }
                         size={35}
+                        className="addButton"
                       />
                     </div>
                   </div>
@@ -203,7 +259,7 @@ const Edit = () => {
 
                         <p>{e}</p>
                       </div>
-                      <div>
+                      <div className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(
@@ -213,6 +269,14 @@ const Edit = () => {
                             )
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() =>
+                            handleEdit(i, e, setIndividualFeatureInput)
+                          }
+                          size={19}
+                          className="deleteButton"
                         />
                       </div>
                     </div>
@@ -220,7 +284,7 @@ const Edit = () => {
                 </div>
 
                 <div className="form">
-                  <p className="batch">Basic</p>
+                  <p className="batch basicColor">Basic</p>
 
                   <Input
                     label="Basic Price"
@@ -234,6 +298,7 @@ const Edit = () => {
                     <Input
                       label="Includes Individual, plus:"
                       name="basicFeature"
+                      value={values.basicFeature}
                       type="text"
                       onChange={(e) => setBasicFeatureInput(e.target.value)}
                       onBlur={handleBlur}
@@ -246,10 +311,12 @@ const Edit = () => {
                             setBasicFeatureList,
                             basicFeatureList,
                             setBasicFeatureInput,
-                            basicFeatureInput
+                            basicFeatureInput,
+                            editId
                           )
                         }
                         size={35}
+                        className="addButton"
                       />
                     </div>
                   </div>
@@ -262,7 +329,7 @@ const Edit = () => {
 
                         <p>{e}</p>
                       </div>
-                      <div>
+                      <div className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(
@@ -272,6 +339,12 @@ const Edit = () => {
                             )
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setBasicFeatureInput)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </div>
                     </div>
@@ -279,7 +352,7 @@ const Edit = () => {
                 </div>
 
                 <div className="form">
-                  <p className="batch">Standard</p>
+                  <p className="batch standardColor">Standard</p>
 
                   <Input
                     label="Standard Price"
@@ -293,6 +366,7 @@ const Edit = () => {
                     <Input
                       label="Includes Basic, plus:"
                       name="standardFeature"
+                      value={values.standardFeature}
                       type="text"
                       onChange={(e) => setStandardFeatureInput(e.target.value)}
                       onBlur={handleBlur}
@@ -305,10 +379,12 @@ const Edit = () => {
                             setStandardFeatureList,
                             standardFeatureList,
                             setStandardFeatureInput,
-                            standardFeatureInput
+                            standardFeatureInput,
+                            editId
                           )
                         }
                         size={35}
+                        className="addButton"
                       />
                     </div>
                   </div>
@@ -321,7 +397,7 @@ const Edit = () => {
 
                         <p>{e}</p>
                       </div>
-                      <div>
+                      <div className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(
@@ -331,6 +407,14 @@ const Edit = () => {
                             )
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() =>
+                            handleEdit(i, e, setStandardFeatureInput)
+                          }
+                          size={19}
+                          className="deleteButton"
                         />
                       </div>
                     </div>
@@ -340,7 +424,7 @@ const Edit = () => {
 
               <div className="formContainer">
                 <div className="form">
-                  <p className="batch">Pro</p>
+                  <p className="batch proColor">Pro</p>
                   <Input
                     label="Pro Price"
                     name="pro"
@@ -353,6 +437,7 @@ const Edit = () => {
                     <Input
                       label="Includes Standard, plus:"
                       name="proFeature"
+                      value={values.proFeature}
                       type="text"
                       onChange={(e) => setProFeatureInput(e.target.value)}
                       onBlur={handleBlur}
@@ -365,10 +450,12 @@ const Edit = () => {
                             setProFeatureList,
                             proFeatureList,
                             setProFeatureInput,
-                            proFeatureInput
+                            proFeatureInput,
+                            editId
                           )
                         }
                         size={35}
+                        className="addButton"
                       />
                     </div>
                   </div>
@@ -381,12 +468,18 @@ const Edit = () => {
 
                         <p>{e}</p>
                       </div>
-                      <div>
+                      <div className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, proFeatureList, setProFeatureList)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setProFeatureInput)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </div>
                     </div>
@@ -394,7 +487,7 @@ const Edit = () => {
                 </div>
 
                 <div className="form">
-                  <p className="batch">Enterprise</p>
+                  <p className="batch enterpriseColor">Enterprise</p>
                   <Input
                     label="Enterprise Price"
                     name="enterprise"
@@ -407,6 +500,7 @@ const Edit = () => {
                     <Input
                       label="Includes Pro, plus:"
                       name="enterpriseFeature"
+                      value={values.enterpriseFeature}
                       type="text"
                       onChange={(e) =>
                         setEnterpriseFeatureInput(e.target.value)
@@ -421,10 +515,12 @@ const Edit = () => {
                             setEnterpriseFeatureList,
                             enterpriseFeatureList,
                             setEnterpriseFeatureInput,
-                            enterpriseFeatureInput
+                            enterpriseFeatureInput,
+                            editId
                           )
                         }
                         size={35}
+                        className="addButton"
                       />
                     </div>
                   </div>
@@ -437,7 +533,7 @@ const Edit = () => {
 
                         <p>{e}</p>
                       </div>
-                      <div>
+                      <div className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(
@@ -447,6 +543,14 @@ const Edit = () => {
                             )
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() =>
+                            handleEdit(i, e, setEnterpriseFeatureInput)
+                          }
+                          size={19}
+                          className="deleteButton"
                         />
                       </div>
                     </div>
@@ -463,6 +567,7 @@ const Edit = () => {
                     label="Feature Name"
                     name="planName"
                     type="text"
+                    value={plan.planName}
                     onChange={(e) =>
                       setPlan({ ...plan, [e.target.name]: e.target.value })
                     }
@@ -472,6 +577,7 @@ const Edit = () => {
                     label="Individual"
                     name="planIndividual"
                     type="text"
+                    value={plan.planIndividual}
                     onChange={(e) =>
                       setPlan({ ...plan, [e.target.name]: e.target.value })
                     }
@@ -481,6 +587,7 @@ const Edit = () => {
                     label="Basic"
                     name="planBasic"
                     type="text"
+                    value={plan.planBasic}
                     onChange={(e) =>
                       setPlan({ ...plan, [e.target.name]: e.target.value })
                     }
@@ -490,6 +597,7 @@ const Edit = () => {
                     label="Standard"
                     name="planStandard"
                     type="text"
+                    value={plan.planStandard}
                     onChange={(e) =>
                       setPlan({ ...plan, [e.target.name]: e.target.value })
                     }
@@ -499,6 +607,7 @@ const Edit = () => {
                     label="Pro"
                     name="planPro"
                     type="text"
+                    value={plan.planPro}
                     onChange={(e) =>
                       setPlan({ ...plan, [e.target.name]: e.target.value })
                     }
@@ -508,6 +617,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="planEnterprise"
                     type="text"
+                    value={plan.planEnterprise}
                     onChange={(e) =>
                       setPlan({ ...plan, [e.target.name]: e.target.value })
                     }
@@ -519,7 +629,14 @@ const Edit = () => {
                     type="button"
                     className="addfeatures"
                     onClick={() => {
-                      plan.planName && setPlanArray([...planArray, plan]);
+                      handleAddFeature(
+                        plan,
+                        plan.planName,
+                        setPlan,
+                        planArray,
+                        setPlanArray,
+                        editId
+                      );
                     }}
                   >
                     Add New Plans
@@ -529,7 +646,9 @@ const Edit = () => {
                 {planArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.planName}</p>
+                      <div>
+                        <p>{e.planName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -580,12 +699,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, planArray, setPlanArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setPlan)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>
@@ -601,6 +726,7 @@ const Edit = () => {
                   <Input
                     label="Feature Name"
                     name="teamName"
+                    value={team.teamName}
                     type="text"
                     onChange={(e) =>
                       setTeam({ ...team, [e.target.name]: e.target.value })
@@ -611,6 +737,7 @@ const Edit = () => {
                     label="Individual"
                     name="teamIndividual"
                     type="text"
+                    value={team.teamIndividual}
                     onChange={(e) =>
                       setTeam({ ...team, [e.target.name]: e.target.value })
                     }
@@ -619,6 +746,7 @@ const Edit = () => {
                   <Input
                     label="Basic"
                     name="teamBasic"
+                    value={team.teamBasic}
                     type="text"
                     onChange={(e) =>
                       setTeam({ ...team, [e.target.name]: e.target.value })
@@ -628,6 +756,7 @@ const Edit = () => {
                   <Input
                     label="Standard"
                     name="teamStandard"
+                    value={team.teamStandard}
                     type="text"
                     onChange={(e) =>
                       setTeam({ ...team, [e.target.name]: e.target.value })
@@ -638,6 +767,7 @@ const Edit = () => {
                     label="Pro"
                     name="teamPro"
                     type="text"
+                    value={team.teamPro}
                     onChange={(e) =>
                       setTeam({ ...team, [e.target.name]: e.target.value })
                     }
@@ -647,6 +777,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="teamEnterprise"
                     type="text"
+                    value={team.teamEnterprise}
                     onChange={(e) =>
                       setTeam({ ...team, [e.target.name]: e.target.value })
                     }
@@ -657,9 +788,16 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() => {
-                      team.teamName && setTeamArray([...teamArray, team]);
-                    }}
+                    onClick={() =>
+                      handleAddFeature(
+                        team,
+                        team.teamName,
+                        setTeam,
+                        teamArray,
+                        setTeamArray,
+                        editId
+                      )
+                    }
                   >
                     Add New Teams
                   </button>
@@ -668,7 +806,9 @@ const Edit = () => {
                 {teamArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.teamName}</p>
+                      <div>
+                        <p>{e.teamName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -719,12 +859,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, teamArray, setTeamArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setTeam)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>
@@ -741,6 +887,7 @@ const Edit = () => {
                     label="Feature Name"
                     name="wallName"
                     type="text"
+                    value={wall.wallName}
                     onChange={(e) =>
                       setWall({ ...wall, [e.target.name]: e.target.value })
                     }
@@ -750,6 +897,7 @@ const Edit = () => {
                     label="Individual"
                     name="wallIndividual"
                     type="text"
+                    value={wall.wallIndividual}
                     onChange={(e) =>
                       setWall({ ...wall, [e.target.name]: e.target.value })
                     }
@@ -759,6 +907,7 @@ const Edit = () => {
                     label="Basic"
                     name="wallBasic"
                     type="text"
+                    value={wall.wallBasic}
                     onChange={(e) =>
                       setWall({ ...wall, [e.target.name]: e.target.value })
                     }
@@ -768,6 +917,7 @@ const Edit = () => {
                     label="Standard"
                     name="wallStandard"
                     type="text"
+                    value={wall.wallStandard}
                     onChange={(e) =>
                       setWall({ ...wall, [e.target.name]: e.target.value })
                     }
@@ -777,6 +927,7 @@ const Edit = () => {
                     label="Pro"
                     name="wallPro"
                     type="text"
+                    value={wall.wallPro}
                     onChange={(e) =>
                       setWall({ ...wall, [e.target.name]: e.target.value })
                     }
@@ -786,6 +937,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="wallEnterprise"
                     type="text"
+                    value={wall.wallEnterprise}
                     onChange={(e) =>
                       setWall({ ...wall, [e.target.name]: e.target.value })
                     }
@@ -796,9 +948,16 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() => {
-                      wall.wallName && setWallArray([...wallArray, wall]);
-                    }}
+                    onClick={() =>
+                      handleAddFeature(
+                        wall,
+                        wall.wallName,
+                        setWall,
+                        wallArray,
+                        setWallArray,
+                        editId
+                      )
+                    }
                   >
                     Add New Walls
                   </button>
@@ -807,7 +966,9 @@ const Edit = () => {
                 {wallArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.wallName}</p>
+                      <div>
+                        <p>{e.wallName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -858,12 +1019,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, wallArray, setWallArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setWall)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>
@@ -880,6 +1047,7 @@ const Edit = () => {
                     label="Feature Name"
                     name="fileName"
                     type="text"
+                    value={file.fileName}
                     onChange={(e) =>
                       setFile({ ...file, [e.target.name]: e.target.value })
                     }
@@ -889,6 +1057,7 @@ const Edit = () => {
                     label="Individual"
                     name="fileIndividual"
                     type="text"
+                    value={file.fileIndividual}
                     onChange={(e) =>
                       setFile({ ...file, [e.target.name]: e.target.value })
                     }
@@ -898,6 +1067,7 @@ const Edit = () => {
                     label="Basic"
                     name="fileBasic"
                     type="text"
+                    value={file.fileBasic}
                     onChange={(e) =>
                       setFile({ ...file, [e.target.name]: e.target.value })
                     }
@@ -907,6 +1077,7 @@ const Edit = () => {
                     label="Standard"
                     name="fileStandard"
                     type="text"
+                    value={file.fileStandard}
                     onChange={(e) =>
                       setFile({ ...file, [e.target.name]: e.target.value })
                     }
@@ -916,6 +1087,7 @@ const Edit = () => {
                     label="Pro"
                     name="filePro"
                     type="text"
+                    value={file.filePro}
                     onChange={(e) =>
                       setFile({ ...file, [e.target.name]: e.target.value })
                     }
@@ -925,6 +1097,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="fileEnterprise"
                     type="text"
+                    value={file.fileEnterprise}
                     onChange={(e) =>
                       setFile({ ...file, [e.target.name]: e.target.value })
                     }
@@ -935,9 +1108,16 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() => {
-                      file.fileName && setFileArray([...fileArray, file]);
-                    }}
+                    onClick={() =>
+                      handleAddFeature(
+                        file,
+                        file.fileName,
+                        setFile,
+                        fileArray,
+                        setFileArray,
+                        editId
+                      )
+                    }
                   >
                     Add New Files
                   </button>
@@ -946,7 +1126,9 @@ const Edit = () => {
                 {fileArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.fileName}</p>
+                      <div>
+                        <p>{e.fileName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -997,12 +1179,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, fileArray, setFileArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setFile)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>
@@ -1019,6 +1207,7 @@ const Edit = () => {
                     label="Feature Name"
                     name="productName"
                     type="text"
+                    value={product.productName}
                     onChange={(e) =>
                       setProduct({
                         ...product,
@@ -1031,6 +1220,7 @@ const Edit = () => {
                     label="Individual"
                     name="productIndividual"
                     type="text"
+                    value={product.productIndividual}
                     onChange={(e) =>
                       setProduct({
                         ...product,
@@ -1043,6 +1233,7 @@ const Edit = () => {
                     label="Basic"
                     name="productBasic"
                     type="text"
+                    value={product.productBasic}
                     onChange={(e) =>
                       setProduct({
                         ...product,
@@ -1055,6 +1246,7 @@ const Edit = () => {
                     label="Standard"
                     name="productStandard"
                     type="text"
+                    value={product.productStandard}
                     onChange={(e) =>
                       setProduct({
                         ...product,
@@ -1067,6 +1259,7 @@ const Edit = () => {
                     label="Pro"
                     name="productPro"
                     type="text"
+                    value={product.productPro}
                     onChange={(e) =>
                       setProduct({
                         ...product,
@@ -1079,6 +1272,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="productEnterprise"
                     type="text"
+                    value={product.productEnterprise}
                     onChange={(e) =>
                       setProduct({
                         ...product,
@@ -1092,10 +1286,16 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() => {
-                      product.productName &&
-                        setProductArray([...productArray, product]);
-                    }}
+                    onClick={() =>
+                      handleAddFeature(
+                        product,
+                        product.productName,
+                        setProduct,
+                        productArray,
+                        setProductArray,
+                        editId
+                      )
+                    }
                   >
                     Add New Products
                   </button>
@@ -1104,7 +1304,9 @@ const Edit = () => {
                 {productArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.productName}</p>
+                      <div>
+                        <p>{e.productName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -1155,12 +1357,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, productArray, setProductArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setProduct)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>
@@ -1177,6 +1385,7 @@ const Edit = () => {
                     label="Feature Name"
                     name="manageName"
                     type="text"
+                    value={manage.manageName}
                     onChange={(e) =>
                       setManage({ ...manage, [e.target.name]: e.target.value })
                     }
@@ -1186,6 +1395,7 @@ const Edit = () => {
                     label="Individual"
                     name="manageIndividual"
                     type="text"
+                    value={manage.manageIndividual}
                     onChange={(e) =>
                       setManage({ ...manage, [e.target.name]: e.target.value })
                     }
@@ -1195,6 +1405,7 @@ const Edit = () => {
                     label="Basic"
                     name="manageBasic"
                     type="text"
+                    value={manage.manageBasic}
                     onChange={(e) =>
                       setManage({ ...manage, [e.target.name]: e.target.value })
                     }
@@ -1204,6 +1415,7 @@ const Edit = () => {
                     label="Standard"
                     name="manageStandard"
                     type="text"
+                    value={manage.manageStandard}
                     onChange={(e) =>
                       setManage({ ...manage, [e.target.name]: e.target.value })
                     }
@@ -1213,6 +1425,7 @@ const Edit = () => {
                     label="Pro"
                     name="managePro"
                     type="text"
+                    value={manage.managePro}
                     onChange={(e) =>
                       setManage({ ...manage, [e.target.name]: e.target.value })
                     }
@@ -1222,6 +1435,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="manageEnterprise"
                     type="text"
+                    value={manage.manageEnterprise}
                     onChange={(e) =>
                       setManage({ ...manage, [e.target.name]: e.target.value })
                     }
@@ -1232,10 +1446,16 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() => {
-                      manage.manageName &&
-                        setManageArray([...manageArray, manage]);
-                    }}
+                    onClick={() =>
+                      handleAddFeature(
+                        manage,
+                        manage.manageName,
+                        setManage,
+                        manageArray,
+                        setManageArray,
+                        editId
+                      )
+                    }
                   >
                     Add New Manages
                   </button>
@@ -1244,7 +1464,9 @@ const Edit = () => {
                 {manageArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.manageName}</p>
+                      <div>
+                        <p>{e.manageName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -1295,12 +1517,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, manageArray, setManageArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setManage)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>
@@ -1317,6 +1545,7 @@ const Edit = () => {
                     label="Feature Name"
                     name="dashboardName"
                     type="text"
+                    value={dashboard.dashboardName}
                     onChange={(e) =>
                       setDashboard({
                         ...dashboard,
@@ -1329,6 +1558,7 @@ const Edit = () => {
                     label="Individual"
                     name="dashboardIndividual"
                     type="text"
+                    value={dashboard.dashboardIndividual}
                     onChange={(e) =>
                       setDashboard({
                         ...dashboard,
@@ -1341,6 +1571,7 @@ const Edit = () => {
                     label="Basic"
                     name="dashboardBasic"
                     type="text"
+                    value={dashboard.dashboardBasic}
                     onChange={(e) =>
                       setDashboard({
                         ...dashboard,
@@ -1353,6 +1584,7 @@ const Edit = () => {
                     label="Standard"
                     name="dashboardStandard"
                     type="text"
+                    value={dashboard.dashboardStandard}
                     onChange={(e) =>
                       setDashboard({
                         ...dashboard,
@@ -1365,6 +1597,7 @@ const Edit = () => {
                     label="Pro"
                     name="dashboardPro"
                     type="text"
+                    value={dashboard.dashboardPro}
                     onChange={(e) =>
                       setDashboard({
                         ...dashboard,
@@ -1377,6 +1610,7 @@ const Edit = () => {
                     label="Enterprise"
                     name="dashboardEnterprise"
                     type="text"
+                    value={dashboard.dashboardEnterprise}
                     onChange={(e) =>
                       setDashboard({
                         ...dashboard,
@@ -1390,10 +1624,16 @@ const Edit = () => {
                   <button
                     type="button"
                     className="addfeatures"
-                    onClick={() => {
-                      dashboard.dashboardName &&
-                        setDashboardArray([...dashboardArray, dashboard]);
-                    }}
+                    onClick={() =>
+                      handleAddFeature(
+                        dashboard,
+                        dashboard.dashboardName,
+                        setDashboard,
+                        dashboardArray,
+                        setDashboardArray,
+                        editId
+                      )
+                    }
                   >
                     Add New Dashboards
                   </button>
@@ -1402,7 +1642,9 @@ const Edit = () => {
                 {dashboardArray?.map((e, i) => (
                   <div className="TableHeading">
                     <div className="essentialsHead">
-                      <p>{e.dashboardName}</p>
+                      <div>
+                        <p>{e.dashboardName}</p>
+                      </div>
                       <div>
                         <AiOutlineInfoCircle size={24} color="gray" />
                       </div>
@@ -1453,12 +1695,18 @@ const Edit = () => {
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p className="btns">
                         <MdDeleteForever
                           onClick={() =>
                             handleDelete(i, dashboardArray, setDashboardArray)
                           }
                           size={20}
+                          className="deleteButton"
+                        />
+                        <FiEdit
+                          onClick={() => handleEdit(i, e, setDashboard)}
+                          size={19}
+                          className="deleteButton"
                         />
                       </p>
                     </div>

@@ -11,9 +11,12 @@ const StepFirstQuestion = ({
   return (
     <div className="profession">
       <div className="questions">
-        <h2 className="logoImage">ambaram</h2>
+        <p className="logoImage">ambaram</p>
         <div>
-          <p className="heading">Hey there, what brings you here today?</p>
+          <p className="heading">
+            {" "}
+            Welcome to Ambaram Community !! Please tell us about yourself ?
+          </p>
           <div className="answers">
             <div className="radioBtn">
               <div>
@@ -32,36 +35,36 @@ const StepFirstQuestion = ({
                 <input
                   type="radio"
                   name="profession"
-                  checked={formData.profession === "Personal"}
-                  value="Personal"
+                  checked={formData.profession === "freelance_designer"}
+                  value="freelance_designer"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>Personal</div>
+              <div>freelance designer</div>
             </div>
             <div className="radioBtn">
               <div>
                 <input
                   type="radio"
                   name="profession"
-                  checked={formData.profession === "School"}
-                  value="School"
+                  checked={formData.profession === "Collage"}
+                  value="Collage"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>School</div>
+              <div>Collage</div>
             </div>
             <div className="radioBtn">
               <div>
                 <input
                   type="radio"
                   name="profession"
-                  checked={formData.profession === "Nonprofits"}
-                  value="Nonprofits"
+                  checked={formData.profession === "Non_profit"}
+                  value="Non_profit"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>Nonprofits</div>
+              <div>Non profit</div>
             </div>
           </div>
         </div>
@@ -111,6 +114,66 @@ const StepFirstQuestion = ({
                   <input
                     type="radio"
                     name="current_role"
+                    checked={formData.current_role === "Catagory_head"}
+                    value="Catagory_head"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>Catagory head</div>
+              </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
+                    checked={formData.current_role === "Account_head"}
+                    value="Account_head"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>Account head</div>
+              </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
+                    checked={formData.current_role === "Merchantiser"}
+                    value="Merchantiser"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>Merchantiser</div>
+              </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
+                    checked={formData.current_role === "Designer"}
+                    value="Designer"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>Designer</div>
+              </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
+                    checked={formData.current_role === "Product_developer"}
+                    value="Produc_developer"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>Product developer</div>
+              </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
                     checked={formData.current_role === "Freelancer"}
                     value="Freelancer"
                     onChange={(e) => handleFormChange(e)}
@@ -135,12 +198,12 @@ const StepFirstQuestion = ({
                   <input
                     type="radio"
                     name="current_role"
-                    checked={formData.current_role === "C-Level"}
-                    value="C-Level"
+                    checked={formData.current_role === "C-Suit"}
+                    value="C-Suit"
                     onChange={(e) => handleFormChange(e)}
                   />
                 </div>
-                <div>C-Level</div>
+                <div>C-Suit</div>
               </div>
               <div className="radioBtn">
                 <div>
@@ -154,9 +217,33 @@ const StepFirstQuestion = ({
                 </div>
                 <div>VP</div>
               </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
+                    checked={formData.current_role === "CEO"}
+                    value="CEO"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>CEO</div>
+              </div>
+              <div className="radioBtn">
+                <div>
+                  <input
+                    type="radio"
+                    name="current_role"
+                    checked={formData.current_role === "Owner"}
+                    value="Owner"
+                    onChange={(e) => handleFormChange(e)}
+                  />
+                </div>
+                <div>Owner</div>
+              </div>
             </div>
           </div>
-        ) : formData.profession === "School" ? (
+        ) : formData.profession === "Collage" ? (
           <div>
             <p className="heading">What best describes your current role?</p>
             <div className="answers">
@@ -210,7 +297,7 @@ const StepFirstQuestion = ({
               </div>
             </div>
           </div>
-        ) : formData.profession === "Nonprofits" ? (
+        ) : formData.profession === "Non_profit" ? (
           <div>
             <p className="heading">What best describes your current role?</p>
             <div className="answers">
@@ -273,18 +360,6 @@ const StepFirstQuestion = ({
                   />
                 </div>
                 <div>It staff</div>
-              </div>
-              <div className="radioBtn">
-                <div>
-                  <input
-                    type="radio"
-                    name="current_role"
-                    checked={formData.current_role === "Other"}
-                    value="Other"
-                    onChange={(e) => handleFormChange(e)}
-                  />
-                </div>
-                <div>Other</div>
               </div>
             </div>
           </div>

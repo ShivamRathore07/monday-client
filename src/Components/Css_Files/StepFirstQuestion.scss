@@ -7,15 +7,14 @@
         width: 50%;
         .logoImage{
             font-size: 28px;
-            color: #6161ff;
+            color: #4D7CFE;
             cursor: pointer;
-            letter-spacing: 1px;
             margin-top: 8vh;
         }
         .heading{
             font-size: 25px;
             font-weight: 400;
-            margin-top: 10vh;
+            margin-top: 5vh;
         }
         .answers{
             display: flex;
@@ -26,7 +25,7 @@
                 justify-content: center;
                 align-items: center;
                 border: 1px solid rgb(194, 192, 192);
-                border-radius: 50px;
+                border-radius: 5px;
                 padding: 3px 1vw;
                 gap: 1vw;
                 color: rgb(122, 122, 122);
@@ -36,16 +35,30 @@
                 height: 2em;
                 border: 1px solid rgb(218, 28, 28);
             }
+        //     .radioBtn>div>input:checked:after {
+        //         background-color: #6DD230; 
+        //         width: 15px;
+        // height: 15px;
+        //         border-radius: 15px;
+        //         top: 4px;
+        //         left: 1px;
+        //         position: relative;
+        //         // background-color: #ffa500;
+        //         content: '';
+        //         display: inline-block;
+        //         visibility: visible;
+        //         border: 2px solid #6DD230;
+        //     }
 
         }
         .professionContinueBtn{
             display: flex;
             justify-content: space-between;
-            margin: 23vh 5vw 0 0;
+            margin: 16vh 5vw 0 0;
         }
         .professionContinueBtn>button{
             border-radius: 5px;
-            background-color: #6161ff;
+            background-color: #4D7CFE;
             color: $white;
             border: 0 solid;
             font-size: 18px;
@@ -54,25 +67,25 @@
             letter-spacing: 1px;
         }
         .professionContinueBtn>button:hover{
-            background-color: #3434c0;
+            background-color: #98A9BC;
             transition: ease-in-out 0.5s;
             cursor: pointer;
         }
         .professionContinueBtn>button:disabled{
-            background-color: #c2c2c2;
+            background-color: #98A9BC;
             transition: ease-in-out 0.5s;            
         }
         .professionContinueBtn>button:disabled:hover{
             cursor: not-allowed;
         }
-          .companyContinueBtn{
+        .companyContinueBtn{
             display: flex;
             justify-content: space-between;
-            margin: 17vh 5vw 0 0;
+            margin: 20vh 5vw 0 0;
         }
         .companyContinueBtn>button{
             border-radius: 5px;
-            background-color: #6161ff;
+            background-color: #4D7CFE;
             color: $white;
             border: 0 solid;
             font-size: 18px;
@@ -81,12 +94,12 @@
             letter-spacing: 1px;
         }
         .companyContinueBtn>button:hover{
-            background-color: #3434c0;
+            background-color: #98A9BC;
             transition: ease-in-out 0.5s;
             cursor: pointer;
           }
           .companyContinueBtn>button:disabled{
-            background-color: #c2c2c2;
+            background-color: #98A9BC;
             transition: ease-in-out 0.5s;            
         }
         .companyContinueBtn>button:disabled:hover{

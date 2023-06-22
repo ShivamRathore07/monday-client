@@ -9,13 +9,16 @@
   .banner{
     height: 75vh;
     width:100%;
+    margin-top: 11vh;
   }
-  .banner+h1{
-   color: #6161ff;
+  .bannerHeading{
+   color: #4D7CFE;
+   font-size: 30px;
+   font-weight: 500;
   }
   .getStartedBtnInHeading{
     color:$white;
-    background-color: #6161ff;
+    background-color: #4D7CFE;
     font-size: 18px;
     display: flex;
     align-items: center;
@@ -23,11 +26,11 @@
     width: 12vw;
     justify-content: center;
     margin: auto;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
   }
   .getStartedBtnInHeading:hover{
-    background-color: gray;
+    background-color: #98A9BC;
     transition: ease-in-out 0.5s;
   }
 }
@@ -47,7 +50,7 @@
     .yearlyStyle{
         display: flex;
         p:hover{
-            color: #6161ff;
+            color: #4D7CFE;
             cursor: pointer;            
         }
     }
@@ -73,8 +76,10 @@
     justify-content: center;
     align-items: center;
   }
-  .listHeading>h1{
+  .listHeading>p{
     color: $white;
+    font-size: 24px;
+    font-weight: 600;
   }
   .TableHeadingList{
     display: flex;
@@ -93,37 +98,50 @@
     display: flex;
     justify-content: space-around;
   }
-  .TableHeading>div{
+  .TableHeading>div:not(:first-child){
     width: 13vw;
     text-align: center;
     align-self: center;
+    font-weight: 300;
+    font-family: 6px;
+  }
+  .TableHeading>div:not(:first-child)>p{
+    font-weight: 300;
+    font-size: 14px;
   }
   .TableHeading>div:nth-child(1){
     width: 18vw;
-    text-align: center;
   }
   .tryFreebtn{
-    border-radius: 10px;
-    background-color: #6161ff;
+    border-radius: 5px;
+    background-color: #4D7CFE;
     color: $white;
     border: 0 solid;
     width: 9vw;
     height: 4vh;
 }
 .tryFreebtn:hover{
-  background-color: gray;
+  background-color: #98A9BC;
   transition: ease-in-out 0.5s;
+  cursor: pointer;
 }
 .essentials{
   border-bottom: 1px solid rgb(218, 213, 213);
-  padding-left: 2vh;
-  
+  padding-left: 3vw; 
+}
+.essentials>p{
+ font-size: 25px;
+ font-weight: 400;
 }
 .essentialsHead{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.essentialsHead>p{
+  font-size: 14px;
+  font-weight: 400;
+ }
 .CompletefeaturesList{
   margin-top: 3vh;
   padding: 1vh;

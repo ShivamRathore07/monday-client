@@ -10,7 +10,7 @@ const StepThirdQuestion = ({
   return (
     <div className="profession">
       <div className="questions">
-        <h2 className="logoImage">ambaram</h2>
+        <p className="logoImage">ambaram</p>
         <div>
           <p className="heading">Select what you'd like to manage first</p>
           <p>You can always add more in the future</p>

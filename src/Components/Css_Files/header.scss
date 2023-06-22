@@ -1,37 +1,57 @@
 @import '../../Assets/mixins';
-  .container{
-    display: flex;
-    justify-content: space-between;
-    padding: 0vh 2vw 0vh 2vw;
-  }
+
   .childContainer{
     display: flex;
     align-items: center;
-    gap: 2vw;
-    font-size: $heading-size;
+    gap: 6vw;
+    padding: 0vh 0vw 0vh 3vw;
+    position: fixed;
+    width: 99%;
+    z-index: 99;
+    height: 9vh;
+    background: $white;
     .logoImage{
       font-size: 28px;
-      color: #6161ff;
+      color: #4D7CFE;
       cursor: pointer;
-      letter-spacing: 1px;
-
+    }
+    .navigator{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #f2f4f6;
+    border-top-left-radius:50px;
+    border-bottom-left-radius:50px;
+    }
+    .navigator>div:nth-child(1){
+      display: flex;
+      font-size: 16px;
+      gap: 2vw;
+      
+      color: #778CA2;
+    align-items: center;
+    }
+    .navigator>div:nth-child(2){
+      display: flex;
+      margin-right:10vw ;      
+      gap: 2vw;
+      align-items: center;
     }
     .getStartedBtn{
+      border-radius: 5px;
+      background-color: #4D7CFE;
       color: $white;
-      border: 0px solid;
-      border-radius: 10px;
-      background-color:#6161ff;
-      padding: 1.5vh 2vh 1.5vh 2vh;
-      display: flex;
-      text-align: center;
-      align-items: center;
-      cursor: pointer;
+      border: 0 solid;
+      font-size: 16px;
+      font-weight: 500;
+      height: 4vh;
+      padding: 0 1vw 0 1vw;
+      letter-spacing: 1px;
     }
     .getStartedBtn:hover{
-      background-color: gray;
+      background-color: #98A9BC;
       transition: ease-in-out 0.5s;
+      cursor: pointer;
     }
-  }
-  .childContainer>p{
-    cursor: pointer;
   }

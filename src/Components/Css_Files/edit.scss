@@ -2,10 +2,19 @@
 .editPage{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 2vw;
+
+    .deleteButton{
+      color: #4D7CFE;        
+   }
+   .deleteButton:hover{
+     color: #98A9BC;
+     transition: ease-in-out 0.5s;
+     cursor: pointer;
+   }   
 .formContainer{
     display: flex;
     justify-content: center;
-    margin: 5vh 0 0 0;
+    margin: 10vh 0 0 0;
     gap:2vw;
     .form{
         border-radius: 5px;
@@ -25,16 +34,34 @@
             font-weight: 500;
             
         }
+        .individualColor{
+          color: #68df23;
+        }
+        .basicColor{
+          color: #fd7e3b;
+        }
+        .standardColor{
+          color: #f17074;
+        }
+        .proColor{
+          color: #2774c6;
+        }
+        .enterpriseColor{
+          color: #527fff;
+        }
+
        
-        button{
-           background-color: #6161ff; 
-           border: 0px solid; 
+        .addButton{
+           background-color: #4D7CFE; 
            color: $white;
-           font-size: 18px;
-           height: 6vh;
-           margin: 2vh 0 0 0;
            border-radius: 5px;
         }
+        .addButton:hover{
+          background-color: #98A9BC;
+          transition: ease-in-out 0.5s;
+          cursor: pointer;
+        }
+       
             label{
                 font-size: 16px;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -46,6 +73,10 @@
             }
             .tags>p{
                 margin-top: -0vh;
+            }
+            .btns{
+              display: flex;
+              gap: 5px;
             }
         }
         
@@ -79,14 +110,13 @@
             display: flex;
             justify-content: space-around;
           }
-          .TableHeading>div{
+          .TableHeading>div:not(:first-child){
             width: 15vw;
             text-align: center;
             align-self: center;
           }
           .TableHeading>div:nth-child(1){
             width: 17vw;
-            text-align: center;
           }
           .TableHeading>div:nth-child(7){
             width: 5vw;
@@ -101,23 +131,35 @@
 
       
       .addfeatures{
-        background-color: #6161ff; 
+        background-color: #4D7CFE; 
            border: 0px solid; 
            color: $white;
+           padding: 0 1vw 0 1vw;
            font-size: 18px;
            height: 6vh;
            border-radius: 5px;
       }
+      .addfeatures:hover{
+        background-color: #98A9BC;
+        transition: ease-in-out 0.5s;
+        cursor: pointer;
+      }
 
     }
 .submit{
-    background-color: #6161ff; 
+    background-color: #4D7CFE; 
            border: 0px solid; 
            color: $white;
            font-size: 18px;
            height: 6vh;
            margin: 2vh 0 0 0;
            border-radius: 5px;
+           padding: 0 1vw 0 1vw;
            align-items: center;
+}
+.submit:hover{
+  background-color: #98A9BC;
+  transition: ease-in-out 0.5s;
+  cursor: pointer;
 }
 }

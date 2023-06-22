@@ -1,8 +1,5 @@
 import React from "react";
 import "../Css_Files/StepFirstQuestion.scss";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { signUp } from "../../Redux/Actions/userAction";
 
 const StepForthQuestion = ({
     handleFormChange,
@@ -10,52 +7,50 @@ const StepForthQuestion = ({
     setActive,
     active,
 }) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
       
   return (
     <div className="profession">
       <div className="questions">
-        <h2 className="logoImage">ambaram</h2>
+        <p className="logoImage">ambaram</p>
         <div>
-          <p className="heading">Select what you'd like to Focus on first</p>
-          <p>Help us tailor the best experience for you</p>
+          <p className="heading">Which industry you represent ?</p>
+          <p>help us craft your experience</p>
           <div className="answers">
             <div className="radioBtn">
               <div>
                 <input
                   type="radio"
                   name="focusOnFirst"
-                  checked={formData.focusOnFirst === "Legal_requests"}
-                  value="Legal_requests"
+                  checked={formData.focusOnFirst === "Fashion_Design"}
+                  value="Fashion_Design"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>Legal requests</div>
+              <div>Fashion Design</div>
             </div>
             <div className="radioBtn">
               <div>
                 <input
                   type="radio"
                   name="focusOnFirst"
-                  checked={formData.focusOnFirst === "Procurement"}
-                  value="Procurement"
+                  checked={formData.focusOnFirst === "Accessories"}
+                  value="Accessories"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>Procurement</div>
+              <div>Accessories</div>
             </div>
             <div className="radioBtn">
               <div>
                 <input
                   type="radio"
                   name="focusOnFirst"
-                  checked={formData.focusOnFirst === "Project_management"}
-                  value="Project_management"
+                  checked={formData.focusOnFirst === "Footwear"}
+                  value="Footwear"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>Project management</div>
+              <div>Footwear</div>
             </div>
 
             <div className="radioBtn">
@@ -63,12 +58,48 @@ const StepForthQuestion = ({
                 <input
                   type="radio"
                   name="focusOnFirst"
-                  checked={formData.focusOnFirst === "Other"}
-                  value="Other"
+                  checked={formData.focusOnFirst === "Lifestlye"}
+                  value="Lifestlye"
                   onChange={(e) => handleFormChange(e)}
                 />
               </div>
-              <div>Other</div>
+              <div>Lifestlye</div>
+            </div>
+            <div className="radioBtn">
+              <div>
+                <input
+                  type="radio"
+                  name="focusOnFirst"
+                  checked={formData.focusOnFirst === "Home"}
+                  value="Home"
+                  onChange={(e) => handleFormChange(e)}
+                />
+              </div>
+              <div>Home</div>
+            </div>
+            <div className="radioBtn">
+              <div>
+                <input
+                  type="radio"
+                  name="focusOnFirst"
+                  checked={formData.focusOnFirst === "Leather"}
+                  value="Leather"
+                  onChange={(e) => handleFormChange(e)}
+                />
+              </div>
+              <div>Leather</div>
+            </div>
+            <div className="radioBtn">
+              <div>
+                <input
+                  type="radio"
+                  name="focusOnFirst"
+                  checked={formData.focusOnFirst === "Jwelery"}
+                  value="Jwelery"
+                  onChange={(e) => handleFormChange(e)}
+                />
+              </div>
+              <div>Jwelery</div>
             </div>
           </div>
         </div>
@@ -87,9 +118,15 @@ const StepForthQuestion = ({
           </button>
           <button
              disabled={!formData.focusOnFirst}
-             onClick={() =>dispatch(signUp({formData,navigate}))  }
+             onClick={() =>
+              setActive({
+                ...active,
+                questionForth: false,
+                questionFive: true,
+              })
+            }
           >
-            Signup
+            Continue
           </button>
         </div>
       </div>

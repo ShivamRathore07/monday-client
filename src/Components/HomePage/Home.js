@@ -43,11 +43,11 @@ const Home = () => {
           src={process.env.PUBLIC_URL + "/banner.jpeg"}
           alt="banner_image"
         />
-        <h1>
-          A visual tool for collaboration and tracking work in one place <br />{" "}
+        <p className="bannerHeading">
+          A visual tool for collaboration and tracking work in one place <br />
           Start for <span className="tagColor">free</span>.
-        </h1>
-        <p>Unlimited boards and workflows. No credit card needed.</p>
+        </p>
+        <p>No credit card needed.</p>
         <div className="getStartedBtnInHeading">
           <p>{`GET STARTED`}</p>
         </div>
@@ -74,10 +74,10 @@ const Home = () => {
       <div className="cards">
         <Cards
           color="#68df23"
-          fontColor="#323338"
+          fontColor="#68df23"
           heading="Individual"
           price={getPrice.individual}
-          SubHeading="Individual plan includes:"
+          SubHeading="Includes Individual, plus:"
           priceMonth="Up to 2 seats"
           features={getPrice.individualFeature}
         />
@@ -85,7 +85,7 @@ const Home = () => {
           color="#fd7e3b"
           heading="Basic"
           price={monthlyYearly === "Yearly" ? getPrice.basic : 10}
-          SubHeading="Includes Individual, plus:"
+          SubHeading="Includes Basic, plus:"
           priceMonth={`Total $${
             monthlyYearly === "Yearly"
               ? getPrice.basic * teamSize
@@ -106,10 +106,10 @@ const Home = () => {
           features={getPrice.standardFeature}
         />
         <Cards
-          color="#2774c6"
+          color="#4D7CFE"
           heading="Pro"
           price={monthlyYearly === "Yearly" ? getPrice.pro : 20}
-          SubHeading="Includes Standard, plus:"
+          SubHeading="Includes Basic, plus:"
           priceMonth={`Total $${
             monthlyYearly === "Yearly" ? getPrice.pro * teamSize : 20 * teamSize
           } / month`}
@@ -118,7 +118,7 @@ const Home = () => {
         <Cards
           color="#527fff"
           heading="Enterprise"
-          SubHeading="Includes Pro, plus:"
+          SubHeading="Includes Basic, plus:"
           features={getPrice.enterpriseFeature}
           text={getPrice.enterprise}
         />
@@ -131,39 +131,39 @@ const Home = () => {
       />
       <div className="featureList">
         <div className="listHeading">
-          <h1>Complete features list</h1>
+          <p>Complete features list</p>
           <div>
             <MdExpandMore size={50} color="#ffffff" />
           </div>
         </div>
         <div className="TableHeadingList">
           <div>
-            <h4>Features</h4>
+            <h2 style={{fontWeight:"400"}}>Features</h2>
           </div>
           <div>
             <h4 style={{ color: "#68df23" }}>Individual</h4>
-            <button className="tryFreebtn">Try for free</button>
+            <button className="tryFreebtn">TRY FOR FREE</button>
           </div>
           <div>
             <h4 style={{ color: "#fd7e3b" }}>Basic</h4>
-            <button className="tryFreebtn">Try for free</button>
+            <button className="tryFreebtn">TRY FOR FREE</button>
           </div>
           <div>
             <h4 style={{ color: "#f17074" }}>Standard</h4>
-            <button className="tryFreebtn">Try for free</button>
+            <button className="tryFreebtn">TRY FOR FREE</button>
           </div>
           <div>
-            <h4 style={{ color: "#2774c6" }}>Pro</h4>
-            <button className="tryFreebtn">Try for free</button>
+            <h4 style={{ color: "#4D7CFE" }}>Pro</h4>
+            <button className="tryFreebtn">TRY FOR FREE</button>
           </div>
           <div>
             <h4 style={{ color: "#527fff" }}>Enterprise</h4>
-            <button className="tryFreebtn">Contact us</button>
+            <button className="tryFreebtn">CONTACT US</button>
           </div>
         </div>
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>Plan</h2>
+            <p>Plan</p>
           </div>
           <div>
             {getPrice.plan?.map((e, i) => (
@@ -171,13 +171,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.planName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.planIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.planIndividual
                     )}
@@ -186,7 +186,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.planBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.planBasic
                     )}
@@ -195,7 +195,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.planStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.planStandard
                     )}
@@ -204,7 +204,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.planPro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.planPro
                     )}
@@ -213,7 +213,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.planEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.planEnterprise
                     )}
@@ -226,7 +226,7 @@ const Home = () => {
 
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>Teams</h2>
+            <p>Teams</p>
           </div>
           <div>
             {getPrice.team?.map((e, i) => (
@@ -234,13 +234,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.teamName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.teamIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.teamIndividual
                     )}
@@ -249,7 +249,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.teamBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.teamBasic
                     )}
@@ -258,7 +258,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.teamStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.teamStandard
                     )}
@@ -267,7 +267,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.teamPro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.teamPro
                     )}
@@ -276,7 +276,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.teamEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.teamEnterprise
                     )}
@@ -289,7 +289,7 @@ const Home = () => {
 
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>Wall</h2>
+            <p>Wall</p>
           </div>
           <div>
             {getPrice.wall?.map((e, i) => (
@@ -297,13 +297,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.wallName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.wallIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.wallIndividual
                     )}
@@ -312,7 +312,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.wallBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.wallBasic
                     )}
@@ -321,7 +321,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.wallStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.wallStandard
                     )}
@@ -330,7 +330,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.wallPro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.wallPro
                     )}
@@ -339,7 +339,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.wallEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.wallEnterprise
                     )}
@@ -351,7 +351,7 @@ const Home = () => {
         </div>
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>File</h2>
+            <p>File</p>
           </div>
           <div>
             {getPrice.file?.map((e, i) => (
@@ -359,13 +359,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.fileName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.fileIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.fileIndividual
                     )}
@@ -374,7 +374,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.fileBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.fileBasic
                     )}
@@ -383,7 +383,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.fileStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.fileStandard
                     )}
@@ -392,7 +392,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.filePro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.filePro
                     )}
@@ -401,7 +401,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.fileEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.fileEnterprise
                     )}
@@ -413,7 +413,7 @@ const Home = () => {
         </div>
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>Create Product</h2>
+            <p>Create Product</p>
           </div>
           <div>
             {getPrice.product?.map((e, i) => (
@@ -421,13 +421,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.productName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.productIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.productIndividual
                     )}
@@ -436,7 +436,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.productBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.productBasic
                     )}
@@ -445,7 +445,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.productStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.productStandard
                     )}
@@ -454,7 +454,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.productPro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.productPro
                     )}
@@ -463,7 +463,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.productEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.productEnterprise
                     )}
@@ -475,7 +475,7 @@ const Home = () => {
         </div>
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>Manage</h2>
+            <p>Manage</p>
           </div>
           <div>
             {getPrice.manage?.map((e, i) => (
@@ -483,13 +483,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.manageName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.manageIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.manageIndividual
                     )}
@@ -498,7 +498,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.manageBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.manageBasic
                     )}
@@ -507,7 +507,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.manageStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.manageStandard
                     )}
@@ -516,7 +516,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.managePro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.managePro
                     )}
@@ -525,7 +525,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.manageEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.manageEnterprise
                     )}
@@ -537,7 +537,7 @@ const Home = () => {
         </div>
         <div className="CompletefeaturesList">
           <div className="essentials">
-            <h2>Dashboard</h2>
+            <p>Dashboard</p>
           </div>
           <div>
             {getPrice.dashboard?.map((e, i) => (
@@ -545,13 +545,13 @@ const Home = () => {
                 <div className="essentialsHead">
                   <p>{e.dashboardName}</p>
                   <div>
-                    <AiOutlineInfoCircle size={24} color="gray" />
+                    <AiOutlineInfoCircle size={20} color="gray" />
                   </div>
                 </div>
                 <div>
                   <p>
                     {e.dashboardIndividual === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.dashboardIndividual
                     )}
@@ -560,7 +560,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.dashboardBasic === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.dashboardBasic
                     )}
@@ -569,7 +569,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.dashboardStandard === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.dashboardStandard
                     )}
@@ -578,7 +578,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.dashboardPro === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.dashboardPro
                     )}
@@ -587,7 +587,7 @@ const Home = () => {
                 <div>
                   <p>
                     {e.dashboardEnterprise === "icon" ? (
-                      <IoMdCheckmarkCircle size={20} color="#2774c6" />
+                      <IoMdCheckmarkCircle size={20} color="#4D7CFE" />
                     ) : (
                       e.dashboardEnterprise
                     )}

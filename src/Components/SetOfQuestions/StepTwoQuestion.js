@@ -5,9 +5,9 @@ const StepTwoQuestion = ({handleFormChange, formData, setActive, active}) => {
   return (
     <div className="profession">
       <div className="questions">
-        <h2 className="logoImage">ambaram</h2>
+        <p className="logoImage">ambaram</p>
         <div>
-          <p className="heading">How many people are on your team?</p>
+          <p className="heading">To form your team, how many logins would you like to purchase?</p>
           <div className="answers">
             <div className="radioBtn">
               <div>
@@ -62,7 +62,7 @@ const StepTwoQuestion = ({handleFormChange, formData, setActive, active}) => {
 
          
         <div>
-          <p className="heading">How many people work at your company?</p>
+          <p className="heading">What is your company strength? how many people work in your company?</p>
           <div className="answers">
             <div className="radioBtn">
               <div>

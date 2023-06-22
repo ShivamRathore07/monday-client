@@ -9,29 +9,62 @@ import jwt from "jwt-decode";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cookies = new Cookies(); 
-  const token =  cookies.get('_user_')
+  const cookies = new Cookies();
+  const token = cookies.get("_user_");
 
   return (
-    <div className="container">
-      <div className="childContainer">
-        <h2
-        onClick={()=>navigate("/")}
-          className="logoImage"
-          
-        >ambaram</h2>
-        <p>Products</p>
-        <p>Teams</p>
-        <p>Platform</p>
-        <p>Resources</p>
+    <div className="childContainer">
+      <div>
+        <p onClick={() => navigate("/")} className="logoImage">
+          ambaram
+        </p>
       </div>
-      <div className="childContainer">
-      {token? jwt(token).user.role==="ADMIN" ?
-        <p onClick={()=>navigate("/editPrice")}>Edit Pricing</p> : "" : ""
-      }
-        <p>Contact sales</p>
-        {cookies.get('_user_')?<p onClick={()=>dispatch(signOut(navigate))} >Logout</p>:<p onClick={()=>navigate("/login")} >Login</p>}
-        <p className="getStartedBtn">{`Get Started`}</p>
+      <div className="navigator">
+        <div>
+          <p>HOME</p>
+          <p>ABOUT US</p>
+          <p>BLOGS</p>
+          <p>PLANS</p>
+        </div>
+        <div>
+          {token ? (
+            jwt(token).user.role === "ADMIN" ? (
+              <button
+                className="getStartedBtn"
+                onClick={() => navigate("/editPrice")}
+              >
+                EDIT PRICING
+              </button>
+            ) : (
+              ""
+            )
+          ) : (
+            ""
+          )}
+          {cookies.get("_user_") ? (
+            <button
+              className="getStartedBtn"
+              onClick={() => dispatch(signOut(navigate))}
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <>
+              <button
+                className="getStartedBtn"
+                onClick={() => navigate("/login")}
+              >
+                LOGIN
+              </button>
+              <button
+                className="getStartedBtn"
+                onClick={() => navigate("/login")}
+              >
+                SIGNUP
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

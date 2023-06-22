@@ -1,8 +1,9 @@
 @import '../../Assets/mixins';
 .card{
-    width: 17vw;
-    border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow:0 15px 30px -15px rgba(0,0,0,.5);
+    transition: transform 0.5s, opacity 0.10s;
 
     .color{
         
@@ -11,56 +12,84 @@
     .main{
         padding: 0 1.4vw 0 1.3vw ;
     }
+    .titleHeading{
+        font-size: 25px;
+        font-weight: 500;
+        color:#4D7CFE;
+
+    }
     .amount{
         display: flex;
         align-items: center;
-        margin: -40px 0 -35px 0;
+        margin: -60px 0 -48px 0;
         gap:1vw;
     }
     .amount:nth-child(2){
-        font-size: 17px;         
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 16px;        
     }
     h4{
+        font-weight: 500;
+        line-height: 1.2;
         margin-bottom: -10px;
     }
     h4+p{
-        font-size: $font-size;
+        font-size: 14px;
+        font-weight: 300;
     }
     .tryFreebtn{
-        border-radius: 10px;
-        background-color: #6161ff;
+        border-radius: 5px;
+        background-color: #4D7CFE;
         color: $white;
         border: 0 solid;
         width: 9vw;
         height: 4vh;
     }
     .tryFreebtn:hover{
-        background-color: grey;
+        background-color: #98A9BC;
         transition: ease-in-out 0.5s;
+        cursor: pointer;
     }
     hr{
         border: 1px solid rgb(100, 96, 96);
-        margin-top: 13vh;
+        margin-top: 10vh;
     }
     .subHeading{
         font-size: 20px;
-        font-weight: 600;
+        font-weight: 500;
+        color: #4D7CFE;
     }
     .subData{
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        gap: 1vw;
     }
     .subData>p{
-        font-size: 14px;
-        padding-right: 4px;
+    font-size: 13px;
+    padding-right: 4px;
+    font-weight: 300;
+    margin-top: 3px;
+
+    }
+    .subData>div{
+    margin-top: 3px;
+
     }
     .enterprise{
         margin-top: -3vh;
         height: 8vh;
-    }   
+    }  
+    .feature{
+        font-size: 13px;
+        font-weight: 300; 
+    }
 }
 .card:hover{
-    border: 1px solid #6161ff;
-    transition: all 0.5s ease;
+    border: 1px solid #4D7CFE;
+    // transition: all .5s ease-in-out;
+    // 
+    //  transition: 1s
+    transform: scale(1.01);
+
 }
